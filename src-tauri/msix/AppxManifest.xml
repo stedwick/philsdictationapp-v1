@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10" xmlns:desktop7="http://schemas.microsoft.com/appx/manifest/desktop/windows10/7" xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities" IgnorableNamespaces="uap uap10 desktop7 rescap" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
+  <!--Based on the 1.0.0.0 Store package. scripts/build-msix.ps1 sets Version from tauri.conf.json.-->
+  <Identity Name="18087PhilPDX.PhilsDictationApp" Publisher="CN=185BEB8C-D0D8-46C6-B4D6-0062E3C7275E" Version="0.0.0.0" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>Phil's Dictation App</DisplayName>
+    <PublisherDisplayName>Phil PDX</PublisherDisplayName>
+    <Description>Phil's Dictation App</Description>
+    <Logo>Assets\StoreLogo.png</Logo>
+    <uap10:PackageIntegrity>
+      <uap10:Content Enforcement="on" />
+    </uap10:PackageIntegrity>
+  </Properties>
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.22000.1" />
+  </Dependencies>
+  <Capabilities>
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+  <Applications>
+    <Application Id="PHILSDICTATIONAPP" Executable="VFS\ProgramFilesX64\PhilsDictationApp\PhilsDictationApp.exe" EntryPoint="Windows.FullTrustApplication">
+      <uap:VisualElements BackgroundColor="transparent" DisplayName="PhilsDictationApp" Square150x150Logo="Assets\PHILSDICTATIONAPP-Square150x150Logo.png" Square44x44Logo="Assets\PHILSDICTATIONAPP-Square44x44Logo.png" Description="PhilsDictationApp">
+        <uap:DefaultTile Wide310x150Logo="Assets\PHILSDICTATIONAPP-Wide310x150Logo.png" Square310x310Logo="Assets\PHILSDICTATIONAPP-Square310x310Logo.png" Square71x71Logo="Assets\PHILSDICTATIONAPP-Square71x71Logo.png" />
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+  <mp:PhoneIdentity PhoneProductId="e45f94dd-ff36-49d6-a3c7-3dd65436edef" PhonePublisherId="47ab158a-48cf-4631-ac53-153261b88377" />
+</Package>
