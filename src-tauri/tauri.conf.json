@@ -7,7 +7,7 @@
   },
   "package": {
     "productName": "PhilsDictationApp",
-    "version": "1.0.0"
+    "version": "1.0.2"
   },
   "tauri": {
     "allowlist": {
@@ -38,7 +38,8 @@
         "resizable": true,
         "title": "Phil's Dictation App",
         "width": 800,
-        "height": 600
+        "height": 600,
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProtection,msSpeechRecognitionServiceUseCetoService"
       }
     ]
   }
