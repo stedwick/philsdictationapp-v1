@@ -27,7 +27,15 @@ netlify deploy --dir dist --alias syncta-speech
 
 Store listing: https://apps.microsoft.com/detail/9ntphh45ffrn (Partner Center: Apps and games → Phil's Dictation App).
 
-Requires Rust, Node, and the Windows SDK (for `makeappx.exe` / `makepri.exe`).
+**Build Store releases from the `desktop-1.x` branch, not `main`.** The Store app is the original desktop version (1.0.0 was built from commit `631f4d3`, with `VITE_WEB=` empty: "Paste to app" button, no Chrome warning). `main` is the web version (TaterTalk); 1.0.1 was accidentally built from it and was replaced by 1.0.2 from `desktop-1.x`.
+
+```
+git worktree add ../philsdictationapp-desktop desktop-1.x
+cd ../philsdictationapp-desktop
+npm ci
+```
+
+Requires Rust, Node, and the Windows SDK (for `makeappx.exe` / `makepri.exe`). Run these steps in the `desktop-1.x` checkout:
 
 1. Bump the version in `src-tauri/tauri.conf.json` (`package.version`) and `src-tauri/Cargo.toml`. The Store only accepts a version higher than the published one.
 2. Build the app, then the MSIX:
@@ -36,7 +44,7 @@ Requires Rust, Node, and the Windows SDK (for `makeappx.exe` / `makepri.exe`).
    npm run msix
    ```
    Output: `src-tauri/target/release/bundle/msix/PhilsDictationApp_<version>.0_x64.msix`
-3. Test the release build: install `src-tauri/target/release/bundle/msi/*.msi` (uninstall the Store version first) and confirm dictation types text.
+3. Test the release build: run `src-tauri/target/release/PhilsDictationApp.exe` and confirm the UI matches the Store app ("Paste to app", no Chrome warning) and dictation types text.
 4. In Partner Center: **Start update** → **Packages**: upload the `.msix`, remove the old one → add "What's new" → **Submit**. Certification takes a few hours to ~3 business days; installs auto-update.
 
 `npm run msix` ([scripts/build-msix.ps1](scripts/build-msix.ps1)) packs only the release exe and the logos in `src-tauri/msix/`, using `src-tauri/msix/AppxManifest.xml` with the version from `tauri.conf.json`. The package is unsigned; the Store signs it.
